@@ -1,0 +1,14 @@
+{
+  "name": "demo-app",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start:frontend": "pnpm --filter @demo-app/frontend run start",
+    "start:backend": "pnpm --filter @demo-app/backend run start",
+    "start": "pnpm --parallel start:frontend start:backend"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
