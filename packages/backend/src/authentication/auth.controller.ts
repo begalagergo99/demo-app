@@ -1,28 +1,15 @@
 import { CreateUser, LoginDto } from '@demo-app/shared/models/user';
-import { Controller, Post, Body, Get, Req, Res } from '@nestjs/common';
-import { Request, Response } from 'express';
-import {
-  AUTH_COOKIE_NAME,
-  BEARER_TOKEN_PREFIX,
-} from '@/shared/constants/utils.constants';
+import { Controller, Post, Body, Get } from '@nestjs/common';
 import { IAuthService } from './abstractions';
-
+import { ExtractToken } from '@/shared/decorators/extract-token.decorator';
 @Controller('auth')
 export class AuthController {
   constructor(private readonly authService: IAuthService) {}
 
   @Post('login')
-  async login(
-    @Body() loginDto: LoginDto,
-    @Res({ passthrough: true }) res: Response,
-  ) {
+  async login(@Body() loginDto: LoginDto) {
     const token = await this.authService.login(loginDto);
-    res.cookie(AUTH_COOKIE_NAME, `${BEARER_TOKEN_PREFIX}${token}`, {
-      httpOnly: true,
-      secure: false,
-      sameSite: 'lax',
-    });
-    return !!token;
+    return token;
   }
 
   @Post('signup')
@@ -31,8 +18,7 @@ export class AuthController {
   }
 
   @Get('tokenValidation')
-  async tokenValidation(@Req() req: Request) {
-    this.authService.tokenValidation(req.cookies[AUTH_COOKIE_NAME]);
-    return true;
+  async tokenValidation(@ExtractToken() token: string | null) {
+    return await this.authService.tokenValidation(token);
   }
 }
