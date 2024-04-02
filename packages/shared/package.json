@@ -1,5 +1,5 @@
 {
-  "name": "@demo-app/models",
+  "name": "@demo-app/shared",
   "version": "1.0.0",
   "description": "",
   "main": "index.ts",

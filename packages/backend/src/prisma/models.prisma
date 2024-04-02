@@ -1,0 +1,34 @@
+model User{
+    id Int @id @default(autoincrement())
+    name String
+    email String @unique
+    password String
+    role Roles @default(ADMIN)
+    assignedTasks Task[] @relation("AssignedTasks")
+    createdTasks Task[]
+}
+
+model Task{
+    id Int @id @default(autoincrement())
+    title String 
+    description String
+    status Status @default(INACTIVE)
+    dueDate DateTime @default(now())
+    assigned User[] @relation("AssignedTasks")
+    createdAt DateTime @default(now())
+    updatedAt DateTime @default(now())
+    createdBy User @relation(fields: [createdByUserId], references: [id])
+    createdByUserId Int
+}
+enum Roles {
+    USER
+    ADMIN
+    SUPERADMIN
+}
+
+enum Status {
+    ACTIVE
+    INACTIVE
+    IN_PROGRESS
+    DONE
+}
