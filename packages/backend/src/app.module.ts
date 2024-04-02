@@ -1,10 +1,12 @@
 import { Module } from '@nestjs/common';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
+import * as dotenv from 'dotenv';
+import { AuthModule } from './authentication/auth.module';
 
+dotenv.config(); // Load the environment variables
+console.log(`The connection URL is ${process.env.DATABASE_URL}`);
 @Module({
-  imports: [],
-  controllers: [AppController],
-  providers: [AppService],
+  imports: [AuthModule],
+  controllers: [],
+  providers: [],
 })
 export class AppModule {}
