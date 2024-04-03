@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import Input from "../../../../components/Input/Input";
 import { Button } from "../../../../components/Button/Button";
 import { Select, SelectItem } from "../../../../components/Select/Select";
@@ -15,25 +15,24 @@ interface SearchBarProps {
   className?: string;
 }
 
-const SearchBar: React.FC<SearchBarProps> = ({
+const SearchBar = ({
   selectableOptions,
   onFiltersChange,
   onCreateNewItem,
   className,
-}) => {
+}: SearchBarProps) => {
   const [searchText, setSearchText] = useState("");
-  const [status, setStatus] = useState("");
-  const [selectedItem, setSelectedItem] = useState<SelectItem | null>(selectableOptions[0]);
+  const [selectedItem, setSelectedItem] = useState<SelectItem | null>(
+    selectableOptions[0]
+  );
 
   const handleFiltersChange = () => {
     const changeEvent: SearchBarChangeEvent = {
       searchText,
-      status,
+      status: selectedItem?.value || "",
     };
     onFiltersChange(changeEvent);
   };
-
-
 
   const handleCreateNewItem = () => {
     onCreateNewItem();
@@ -41,10 +40,10 @@ const SearchBar: React.FC<SearchBarProps> = ({
 
   useEffect(() => {
     handleFiltersChange();
-  }, [searchText, status]);
+  }, [searchText, selectedItem]);
 
   useEffect(() => {
-   console.log(selectableOptions);
+    console.log(selectableOptions);
   }, []);
 
   return (

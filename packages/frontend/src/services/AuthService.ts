@@ -11,6 +11,6 @@ export const AuthService = {
     return (await axios.post(`${BASE_URL}/auth/signup`, signupDto)).data
   },
   tokenValidation: async () => {
-    return (await axiosInstance.get(`${BASE_URL}/auth/tokenValidation`)).data
+    return (await axiosInstance.get(`/auth/tokenValidation`)).data
   },
 }

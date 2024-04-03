@@ -1,8 +1,10 @@
 import axios from "axios";
 import { routing } from "../../routing";
+import { BASE_URL } from "..";
 
 const axiosInstance = axios.create({
   withCredentials: true,
+  baseURL: BASE_URL,
 });
 
 axiosInstance.interceptors.request.use((config) => {

@@ -1,6 +1,6 @@
 import { Listbox, Transition } from "@headlessui/react";
-import { CheckIcon, ChevronUpDownIcon } from '@heroicons/react/20/solid'
-import { Fragment, useEffect } from "react";
+import { CheckIcon, ChevronUpDownIcon } from "@heroicons/react/20/solid";
+import { Fragment } from "react";
 
 export interface SelectItem {
   title: string;
@@ -19,16 +19,10 @@ export const Select = ({
   selectedItem,
   onSelectedItemChange,
 }: SelectProps) => {
-
-  useEffect(() => {
-    console.log(selectedItem);
-  }, [selectedItem]);
-
   const setSelectedItem = (selectedItem: SelectItem) => {
     onSelectedItemChange(selectedItem);
   };
 
-  console.log(items);
   return (
     <div className="top-16 w-72">
       <Listbox value={selectedItem} onChange={setSelectedItem}>
@@ -54,7 +48,7 @@ export const Select = ({
                   key={item.key ?? i}
                   className={({ active }) =>
                     `relative cursor-default select-none py-2 pl-10 pr-4 ${
-                      active ? 'bg-blue-100 text-blue-900' : 'text-gray-900'
+                      active ? "bg-blue-100 text-blue-900" : "text-gray-900"
                     }`
                   }
                   value={item}
@@ -63,7 +57,7 @@ export const Select = ({
                     <>
                       <span
                         className={`block truncate ${
-                          selected ? 'font-medium' : 'font-normal'
+                          selected ? "font-medium" : "font-normal"
                         }`}
                       >
                         {item.title}

@@ -5,13 +5,13 @@ import {
   UnauthorizedException,
 } from '@nestjs/common';
 import { Observable } from 'rxjs';
-import { RedisService } from '../services/redis.service';
+import { IRedisService } from '../abstractions/IRedisService';
 
 @Injectable()
 export class AuthGuard implements CanActivate {
   private readonly excludeRoutes = 'authentication';
 
-  constructor(private readonly redisService: RedisService) {}
+  constructor(private readonly redisService: IRedisService) {}
 
   canActivate(
     context: ExecutionContext,
@@ -25,7 +25,7 @@ export class AuthGuard implements CanActivate {
     const token = request.headers.authorization?.replace('Bearer ', '');
 
     if (!token) {
-      return false;
+      throw new UnauthorizedException();
     }
 
     return this.redisService.exists(token).then((isValidToken) => {
