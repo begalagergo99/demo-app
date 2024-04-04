@@ -8,13 +8,10 @@ import {
 import { nanoid } from 'nanoid';
 import * as bcrypt from 'bcrypt';
 import { IAuthRepoService, IAuthService } from './abstractions/index';
-import {
-  CreateUser,
-  LoginDto,
-  LoginResponseDto,
-} from '@demo-app/shared/models/user';
+
 import { Role } from '@demo-app/shared/models/roles';
 import { UserSession } from '../shared/models/user-session';
+import { CreateUser, LoginDto, LoginResponseDto } from '@demo-app/shared';
 
 @Injectable()
 export class AuthService implements IAuthService {

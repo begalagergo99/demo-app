@@ -1,8 +1,4 @@
-import {
-  CreateUser,
-  LoginDto,
-  LoginResponseDto,
-} from './../../../../shared/models/user';
+import { CreateUser, LoginDto, LoginResponseDto } from '@demo-app/shared';
 
 export abstract class IAuthService {
   abstract login(loginDto: LoginDto): Promise<LoginResponseDto>;

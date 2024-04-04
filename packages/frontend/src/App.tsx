@@ -3,8 +3,9 @@ import "./App.css";
 import Login from "./screens/Login/Login";
 import SignUp from "./screens/SignUp/SignUp";
 import { routing } from "./routing";
-import { Dashboard } from "./screens/Dashboard/container/Dashboard";
 import { RecoilRoot } from "recoil";
+import { lazy } from "react";
+const Dashboard = lazy(() => import("./screens/Dashboard/container/Dashboard").then((module) => ({ default: module.Dashboard })));
 
 export const App = () => {
   return (

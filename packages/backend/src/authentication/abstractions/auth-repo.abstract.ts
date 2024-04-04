@@ -1,4 +1,4 @@
-import { CreateUser } from './../../../../shared/models/user';
+import { CreateUser } from '@demo-app/shared';
 import { User } from '@prisma/client';
 
 export abstract class IAuthRepoService {

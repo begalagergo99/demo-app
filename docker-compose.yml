@@ -1,0 +1,15 @@
+services:
+  # client:
+  #   build:
+  #     context: .
+  #     dockerfile: docker/Dockerfile.client
+    # További konfiguráció...
+  backend:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile.backend
+      
+    environment:
+      DATABASE_URL: postgres://admin:root@localhost:5432/demo-app
+      REDIS_URL: redis://localhost:6379
+    # További konfiguráció...

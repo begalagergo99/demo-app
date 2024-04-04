@@ -1,7 +1,7 @@
-import { CreateUser, LoginDto } from '@demo-app/shared/models/user';
 import { Controller, Post, Body, Get } from '@nestjs/common';
 import { IAuthService } from './abstractions';
 import { ExtractToken } from '@/shared/decorators/extract-token.decorator';
+import { CreateUser, LoginDto } from '@demo-app/shared';
 @Controller('auth')
 export class AuthController {
   constructor(private readonly authService: IAuthService) {}

@@ -1,0 +1,21 @@
+FROM node:20
+WORKDIR /app
+RUN npm install -g pnpm
+
+COPY ../pnpm-workspace.yaml ./
+COPY ../pnpm-lock.yaml ./
+
+COPY packages/backend ./packages/backend
+COPY packages/shared ./packages/shared
+
+RUN pnpm install --filter @demo-app/shared
+RUN pnpm install --filter @demo-app/backend
+RUN npx prisma generate
+
+
+RUN pnpm run build --filter @demo-app/backend 
+WORKDIR /app/packages/backend/src
+RUN pnpm prisma migrate deploy
+
+# Indítsd el az alkalmazást
+CMD ["node", "dist/main"]

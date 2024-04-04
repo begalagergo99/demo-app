@@ -1,5 +1,5 @@
 import { PrismaService } from './../shared/services/prisma.service';
-import { CreateUser } from '@demo-app/shared/models/user';
+import { CreateUser } from '@demo-app/shared';
 import { Injectable } from '@nestjs/common';
 import { IAuthRepoService } from './abstractions/auth-repo.abstract';
 
